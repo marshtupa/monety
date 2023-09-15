@@ -56,7 +56,7 @@ credit: user_id
 
 Запросы:
 
-1. Среднее кол-во целей у одного пользователя
+1. Среднее кол-во (медиана) целей у одного пользователя
 2. Количество выполненных целей по пользователям
 3. Среднее кол-во активов, пассивов у пользователя
 4. Средний заработок в месяц
@@ -75,3 +75,20 @@ credit: user_id
     7. < 1м руб.
 
 Индексы для всех запросов, кроме 7, уже выше были бы прописано.
+
+Индексы:
+
+1. goal: user_id
+2. goal: user_id
+3. account: user_id
+deposit: user_id
+credit: user_id
+4. transaction: user_id. Этого поля ещё нет на схеме
+5. transaction: user_id, category
+6. transaction: user_id, category
+7. user: subscription_id
+8. user: subscription_id
+9. account: user_id
+deposit: user_id
+credit: user_id
+10. transaction: user_id
