@@ -1,3 +1,3 @@
 # Monety
 
-![Текст с описанием картинки](/monety_diagram.svg)
+![Описанием картинки](/monety_diagram.svg)
