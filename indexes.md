@@ -47,7 +47,10 @@
 1. account: user_id
 deposit: user_id
 credit: user_id
+2. -
 3. transaction: account_id, created_at DESC
+4. -
+5. -
 
 ## Отчёты разработчикам (метрики):
 
@@ -70,3 +73,5 @@ credit: user_id
     5. < 300к руб.
     6. < 500к руб.
     7. < 1м руб.
+
+Индексы для всех запросов, кроме 7, уже выше были бы прописано.
