@@ -85,6 +85,7 @@ create table goal
 
 create table account
 (
+    id               bigserial                         not null primary key,
     user_id          bigint references app_user (id)   not null,
     currency_id      smallint references currency (id) not null,
     bank_id          int references bank (id),
@@ -96,3 +97,81 @@ create table account
     updated_at       timestamp                         not null,
     deleted          timestamp
 );
+
+create table deposit
+(
+    interest_rate decimal(5, 2) not null check ( 0 <= interest_rate and interest_rate <= 100),
+    duration_days int           not null
+) inherits (account);
+
+
+create table credit
+(
+    lending_interest_rate decimal(5, 2) not null check ( 0 <= lending_interest_rate and lending_interest_rate <= 100),
+    duration_days         int           not null
+) inherits (account);
+
+create table category
+(
+    id           bigserial                         not null primary key,
+    user_id      bigint references app_user (id)   not null,
+    currency_id  smallint references currency (id) not null,
+    limit_amount money,
+    name         varchar(100)                      not null,
+    description  varchar(250),
+    ountcome     boolean                           not null
+);
+
+create table sub_category
+(
+    category_id bigint references category (id) not null
+) inherits (category);
+
+create table place
+(
+    id          bigserial                       not null primary key,
+    user_id     bigint references app_user (id) not null,
+    name        varchar(100)                    not null,
+    description varchar(250)
+);
+
+create table transaction
+(
+    user_id     bigint references app_user (id)   not null,
+    currency_id smallint references currency (id) not null,
+    amount      money,
+    note        varchar(200),
+    created_at  timestamp                         not null
+);
+
+create type account_transaction_type as enum ('income', 'expense');
+
+create table account_transaction
+(
+    account_id     bigint references account (id) not null,
+    category_id    int references category (id),
+    subcategory_id int references sub_category (id),
+    place_id       int references place (id),
+    type_id        account_transaction_type       not null
+
+) inherits (transaction);
+
+create type deposit_transaction_type as enum ('replenishment', 'withdrawal');
+
+create table deposit_transaction
+(
+    deposit_id bigint references deposit (id) not null,
+    type_id    deposit_transaction_type
+
+) inherits (transaction);
+
+
+create type credit_transaction_type as enum ('replenishment', 'withdrawal');
+
+create table credit_transaction
+(
+    credit_id bigint references credit (id) not null,
+    type_id   credit_transaction_type
+
+) inherits (transaction);
+
