@@ -9,6 +9,22 @@
         <dbms type="postgresql"/>
     </preConditions>
 
+    <include file="tables/country.sql" relativeToChangelogFile="true"/>
+    <include file="tables/bank.sql" relativeToChangelogFile="true"/>
+    <include file="tables/currency.sql" relativeToChangelogFile="true"/>
+    <include file="tables/language.sql" relativeToChangelogFile="true"/>
+    <include file="tables/subscription_plan.sql" relativeToChangelogFile="true"/>
     <include file="tables/app_user.sql" relativeToChangelogFile="true"/>
+    <include file="tables/user_setting.sql" relativeToChangelogFile="true"/>
+    <include file="tables/goal.sql" relativeToChangelogFile="true"/>
+    <include file="tables/account.sql" relativeToChangelogFile="true"/>
+    <include file="tables/deposit.sql" relativeToChangelogFile="true"/>
+    <include file="tables/credit.sql" relativeToChangelogFile="true"/>
+    <include file="tables/category.sql" relativeToChangelogFile="true"/>
+    <include file="tables/place.sql" relativeToChangelogFile="true"/>
+    <include file="tables/transaction.sql" relativeToChangelogFile="true"/>
+    <include file="tables/account_transaction.sql" relativeToChangelogFile="true"/>
+    <include file="tables/deposit_transaction.sql" relativeToChangelogFile="true"/>
+    <include file="tables/credit_transaction.sql" relativeToChangelogFile="true"/>
 
 </databaseChangeLog>
